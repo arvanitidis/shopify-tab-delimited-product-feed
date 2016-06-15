@@ -1,0 +1,11 @@
+{% layout none %}
+{% paginate collection.products by settings.collection_ppp %}
+{% endpaginate%}
+
+name<pre>	</pre>sku<pre>	</pre>upc<pre>	</pre>buy_url<pre>	</pre>image_url<pre>	</pre>image_thumb_url<pre>	</pre>description_long<pre>	</pre>price_sale<pre>	</pre>price<pre>	</pre>keywords<br/>
+
+{% for product in collection.products %}
+  {% for variant in product.variants %} 
+    {{ product.title }}-{{ variant.option1 }}-{{ variant.option2 }}<pre>	</pre>{{ variant.sku }}<pre>	</pre>{{ variant.upc }}<pre>	</pre>https://www.wearnaked.com{{ product.url }}<pre>	</pre>https:{{ variant.image | img_url: 'master' }}<pre>	</pre>https:{{ variant.image | img_url: 'small' }}<pre>	</pre>{{product.description | strip_html}}<pre>	</pre>{{ variant.price | money_without_currency }}<pre>	</pre>{{ variant.compare_at_price | money_without_currency }}<pre>	</pre>{{ product.tags }}<br/>
+  {% endfor %}
+{% endfor %}
